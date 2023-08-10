@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('proveedores', function (Blueprint $table) {
+        Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-
-            $table->bigInteger('ciudad_id')->unsigned();
-
-            $table->foreign('ciudad_id')->references('id')->on('ciudad')->onDelete('cascade');
-
+            $table->string('name');
+            $table->string('cc');
+            $table->string('phone');
+            $table->string('direction');
+            $table->foreignId('city_id')->constrained('cities')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('proveedores');
+        Schema::dropIfExists('clients');
     }
 };
