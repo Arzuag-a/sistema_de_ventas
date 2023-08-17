@@ -1,12 +1,17 @@
-<div><a href="/">Home</a></div>
-<a href="{{ route('cities.create') }}">New city</a>
+@extends('app')
+@section('content')
+
+
+<div><a class="btn btn-success" href="/">Home</a></div>
+    <div><a class="btn btn-secondary" href="{{ route('cities.create')}}">New City</a></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
 
 @if(session('message'))
 <div style="color: green;">{{session('message')}}</div>
 @endif
 
-<table cellpadding="10" cellspacing="1" border="1">
+<table class="table table-bordered table-hover">
   <thead>
     <tr>
       <td>No.</td>
@@ -25,10 +30,10 @@
         {{ $city->department->name}}
       </td>
       <td>
-        <a href="{{ route('cities.edit', $city) }}">Edit</a>
+        <a href="{{ route('cities.edit', $city) }}"><class="btn btn-info><i class="bi bi-pencil-square"></i></a>
         <form action="{{ route('cities.delete', $city) }}" method="post">
           @csrf
-          <button type="submit">Delete</button>
+          <button type="submit" class="btn btn-danger"> <i class="bi bi-trash"></i></button>
         </form>
       </td>
     </tr>
